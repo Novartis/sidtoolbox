@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "#' list association rules\n#'\n#' This function allows you list association rules in your data using aruleViz package\n#' prerequisite: exploreAssociationRule\n#' dependencies: aruleViz\n#' @param subgroup.data a list of data, covariates indices, outcome indices, trt index, and control value in trt\n#' @param support minimum support, supgroup size (double) default=0.1\n#' @param confidence minimum confidence required for rule (double) default=0.5\n#' @param nmin minimum length of rule (integer) default=2\n#' @param top number of top rules to print (integer)\n#' @param filterby the measure to filter by c(\"support\", \"confidence\", \"lift\")\n#' @param onlyCovariates whether to exclude outcomes (logical) default=FALSE\n#' @return data.frame (lists rules)\n#' @export\nlistAssociationRules <- function(subgroup.data,\n                                 support = 0.1,\n                                 confidence = 0.5,\n                                 nmin = 2,\n                                 top = 1000,\n                                 filterby = \"support\",\n                                 onlyCovariates = FALSE) {\n  \n  rules <- exploreAssociationRules(subgroup.data,\n                                   support = support,\n                                   confidence = confidence,\n                                   onlyCovariates = onlyCovariates)\n  rules <- as.data.frame(inspect(rules[top]))\n  \n  return(rules)\n}\n",
+    "created" : 1565548976460.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2057827195",
+    "id" : "AD3BD79D",
+    "lastKnownWriteTime" : 1565551063,
+    "last_content_update" : 1565551063958,
+    "path" : "~/sidtoolbox/R/listAssociationRules.R",
+    "project_path" : "R/listAssociationRules.R",
+    "properties" : {
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

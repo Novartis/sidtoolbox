@@ -1,0 +1,4 @@
+"0","p"
+"1","NULL
+"
+"0","a <- capture.output(p <- plotAssociationRules(subgroup.data = subgroup.data, method = ""two-key plot"", measure = ""support"", onlyCovariates = FALSE, support = min_support, confidence = min_confidence, min_order = min_order, max_order = max_order))"

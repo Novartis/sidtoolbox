@@ -1,0 +1,3 @@
+"0","# the true positive / false positive subgroup is"
+"0","# subgroup.data$rules"
+"0","a <- sapply(exploreConditionalInferenceTree(subgroup.data = simulated.twoarm, stump = FALSE, testtype = ""Bonferroni"", teststat = ""max"", significance = 0.05, nmin = 0.05, maxdepth = 2), FUN = plot)"

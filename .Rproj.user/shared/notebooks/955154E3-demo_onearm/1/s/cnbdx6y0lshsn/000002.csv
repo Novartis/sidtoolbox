@@ -1,0 +1,35 @@
+"0","# or by indices"
+"0","library(devtools)"
+"0","library(roxygen2)"
+"0","install(""."")"
+"2","* installing *source* package ‘sidtoolbox’ ...
+"
+"2","** R
+"
+"2","** inst
+"
+"2","** preparing package for lazy loading
+"
+"2","** help
+"
+"2","*** installing help indices
+"
+"2","** building package indices
+"
+"2","** installing vignettes
+"
+"2","** testing if installed package can be loaded
+"
+"2","* DONE (sidtoolbox)
+"
+"0","# or load it"
+"0","library(sidtoolbox)"
+"0","# update if changes made"
+"0","document()"
+"1","Writing NAMESPACE
+"
+"1","Writing NAMESPACE
+"
+"0","library(data.table)"
+"0","library(stringr)"
+"0","library(ggplot2)"

@@ -1,0 +1,8 @@
+"0","# on clinical covariates only "
+"0","a <- capture.output(clinical.subgroup <- loadDataset(dataset = subgroup.data$data, "
+"0","                                 covariates = features.clinical, "
+"0","                                 outcomes = features.outcomes, "
+"0","                                 outcomeTypes = outcomeTypes))"
+"2","Error in loadDataset(dataset = subgroup.data$data, covariates = features.clinical,  : 
+  object 'features.clinical' not found
+"

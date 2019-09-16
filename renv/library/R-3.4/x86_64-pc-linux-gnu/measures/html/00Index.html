@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>R: Performance Measures for Statistical Learning</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+<h1> Performance Measures for Statistical Learning
+<img class="toplogo" src="../../../doc/html/Rlogo.svg" alt="[R logo]" />
+</h1>
+<hr/>
+<div style="text-align: center;">
+<a href="../../../doc/html/packages.html"><img class="arrow" src="../../../doc/html/left.jpg" alt="[Up]" /></a>
+<a href="../../../doc/html/index.html"><img class="arrow" src="../../../doc/html/up.jpg" alt="[Top]" /></a>
+</div><h2>Documentation for package &lsquo;measures&rsquo; version 0.2</h2>
+
+<ul><li><a href="../DESCRIPTION">DESCRIPTION file</a>.</li>
+</ul>
+
+<h2>Help Pages</h2>
+
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="ACC.html">ACC</a></td>
+<td>Accuracy</td></tr>
+<tr><td style="width: 25%;"><a href="ARSQ.html">ARSQ</a></td>
+<td>Adjusted coefficient of determination</td></tr>
+<tr><td style="width: 25%;"><a href="AUC.html">AUC</a></td>
+<td>Area under the curve</td></tr>
+<tr><td style="width: 25%;"><a href="BAC.html">BAC</a></td>
+<td>Balanced accuracy</td></tr>
+<tr><td style="width: 25%;"><a href="BER.html">BER</a></td>
+<td>Balanced error rate</td></tr>
+<tr><td style="width: 25%;"><a href="Brier.html">Brier</a></td>
+<td>Brier score</td></tr>
+<tr><td style="width: 25%;"><a href="BrierScaled.html">BrierScaled</a></td>
+<td>Brier scaled</td></tr>
+<tr><td style="width: 25%;"><a href="EXPVAR.html">EXPVAR</a></td>
+<td>Explained variance</td></tr>
+<tr><td style="width: 25%;"><a href="F1.html">F1</a></td>
+<td>F1 measure</td></tr>
+<tr><td style="width: 25%;"><a href="FDR.html">FDR</a></td>
+<td>False discovery rate</td></tr>
+<tr><td style="width: 25%;"><a href="FN.html">FN</a></td>
+<td>False negatives</td></tr>
+<tr><td style="width: 25%;"><a href="FNR.html">FNR</a></td>
+<td>False negative rate</td></tr>
+<tr><td style="width: 25%;"><a href="FP.html">FP</a></td>
+<td>False positives</td></tr>
+<tr><td style="width: 25%;"><a href="FPR.html">FPR</a></td>
+<td>False positive rate</td></tr>
+<tr><td style="width: 25%;"><a href="GMEAN.html">GMEAN</a></td>
+<td>G-mean</td></tr>
+<tr><td style="width: 25%;"><a href="GPR.html">GPR</a></td>
+<td>Geometric mean of precision and recall.</td></tr>
+<tr><td style="width: 25%;"><a href="KAPPA.html">KAPPA</a></td>
+<td>Cohen's kappa</td></tr>
+<tr><td style="width: 25%;"><a href="KendallTau.html">KendallTau</a></td>
+<td>Kendall's tau</td></tr>
+<tr><td style="width: 25%;"><a href="listAllMeasures.html">listAllMeasures</a></td>
+<td>List all measures</td></tr>
+<tr><td style="width: 25%;"><a href="Logloss.html">Logloss</a></td>
+<td>Logarithmic loss</td></tr>
+<tr><td style="width: 25%;"><a href="LSR.html">LSR</a></td>
+<td>Logarithmic Scoring Rule</td></tr>
+<tr><td style="width: 25%;"><a href="MAE.html">MAE</a></td>
+<td>Mean of absolute errors</td></tr>
+<tr><td style="width: 25%;"><a href="MAPE.html">MAPE</a></td>
+<td>Mean absolute percentage error</td></tr>
+<tr><td style="width: 25%;"><a href="MCC.html">MCC</a></td>
+<td>Matthews correlation coefficient</td></tr>
+<tr><td style="width: 25%;"><a href="MEDAE.html">MEDAE</a></td>
+<td>Median of absolute errors</td></tr>
+<tr><td style="width: 25%;"><a href="MEDSE.html">MEDSE</a></td>
+<td>Median of squared errors</td></tr>
+<tr><td style="width: 25%;"><a href="MMCE.html">MMCE</a></td>
+<td>Mean misclassification error</td></tr>
+<tr><td style="width: 25%;"><a href="MSE.html">MSE</a></td>
+<td>Mean of squared errors</td></tr>
+<tr><td style="width: 25%;"><a href="MSLE.html">MSLE</a></td>
+<td>Mean squared logarithmic error</td></tr>
+<tr><td style="width: 25%;"><a href="multiclass.AU1P.html">multiclass.AU1P</a></td>
+<td>Weighted average 1 vs. 1 multiclass AUC</td></tr>
+<tr><td style="width: 25%;"><a href="multiclass.AU1U.html">multiclass.AU1U</a></td>
+<td>Average 1 vs. 1 multiclass AUC</td></tr>
+<tr><td style="width: 25%;"><a href="multiclass.AUNP.html">multiclass.AUNP</a></td>
+<td>Weighted average 1 vs. rest multiclass AUC</td></tr>
+<tr><td style="width: 25%;"><a href="multiclass.AUNU.html">multiclass.AUNU</a></td>
+<td>Average 1 vs. rest multiclass AUC</td></tr>
+<tr><td style="width: 25%;"><a href="multiclass.Brier.html">multiclass.Brier</a></td>
+<td>Multiclass Brier score</td></tr>
+<tr><td style="width: 25%;"><a href="MultilabelACC.html">MultilabelACC</a></td>
+<td>Accuracy (multilabel)</td></tr>
+<tr><td style="width: 25%;"><a href="MultilabelF1.html">MultilabelF1</a></td>
+<td>F1 measure (multilabel)</td></tr>
+<tr><td style="width: 25%;"><a href="MultilabelHamloss.html">MultilabelHamloss</a></td>
+<td>Hamming loss</td></tr>
+<tr><td style="width: 25%;"><a href="MultilabelPPV.html">MultilabelPPV</a></td>
+<td>Positive predictive value (multilabel)</td></tr>
+<tr><td style="width: 25%;"><a href="MultilabelSubset01.html">MultilabelSubset01</a></td>
+<td>Subset-0-1 loss</td></tr>
+<tr><td style="width: 25%;"><a href="MultilabelTPR.html">MultilabelTPR</a></td>
+<td>TPR (multilabel)</td></tr>
+<tr><td style="width: 25%;"><a href="NPV.html">NPV</a></td>
+<td>Negative predictive value</td></tr>
+<tr><td style="width: 25%;"><a href="PPV.html">PPV</a></td>
+<td>Positive predictive value</td></tr>
+<tr><td style="width: 25%;"><a href="QSR.html">QSR</a></td>
+<td>Quadratic Scoring Rule</td></tr>
+<tr><td style="width: 25%;"><a href="RAE.html">RAE</a></td>
+<td>Relative absolute error</td></tr>
+<tr><td style="width: 25%;"><a href="RMSE.html">RMSE</a></td>
+<td>Root mean squared error</td></tr>
+<tr><td style="width: 25%;"><a href="RMSLE.html">RMSLE</a></td>
+<td>Root mean squared logarithmic error</td></tr>
+<tr><td style="width: 25%;"><a href="RRSE.html">RRSE</a></td>
+<td>Root relative squared error</td></tr>
+<tr><td style="width: 25%;"><a href="RSQ.html">RSQ</a></td>
+<td>Coefficient of determination</td></tr>
+<tr><td style="width: 25%;"><a href="SAE.html">SAE</a></td>
+<td>Sum of absolute errors</td></tr>
+<tr><td style="width: 25%;"><a href="SpearmanRho.html">SpearmanRho</a></td>
+<td>Spearman's rho</td></tr>
+<tr><td style="width: 25%;"><a href="SSE.html">SSE</a></td>
+<td>Sum of squared errors</td></tr>
+<tr><td style="width: 25%;"><a href="SSR.html">SSR</a></td>
+<td>Spherical Scoring Rule</td></tr>
+<tr><td style="width: 25%;"><a href="TN.html">TN</a></td>
+<td>True negatives</td></tr>
+<tr><td style="width: 25%;"><a href="TNR.html">TNR</a></td>
+<td>True negative rate</td></tr>
+<tr><td style="width: 25%;"><a href="TP.html">TP</a></td>
+<td>True positives</td></tr>
+<tr><td style="width: 25%;"><a href="TPR.html">TPR</a></td>
+<td>True positive rate</td></tr>
+<tr><td style="width: 25%;"><a href="WKAPPA.html">WKAPPA</a></td>
+<td>Mean quadratic weighted kappa</td></tr>
+</table>
+</body></html>

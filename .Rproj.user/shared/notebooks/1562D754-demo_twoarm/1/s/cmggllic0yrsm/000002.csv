@@ -1,0 +1,4 @@
+"0","SUBGROUP_MIN_SIZE <- 0.1"
+"0","MAX_DEPTH <- 4"
+"0","P_THRESHOLD <- 0.05"
+"0","MIN_P_VALUE <- 10^-10 # to avoid underflow"

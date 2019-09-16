@@ -1,0 +1,21 @@
+"0","# increasing"
+"0","resPSO <- lapply(X = outcome_columns,"
+"0","                 FUN = function(y_idx){"
+"0","  pso <- runPSO(subgroup.data = subgroup.data, "
+"0","                y_idx = y_idx,  "
+"0","                desirable_response = ""increasing"", "
+"0","                depth = MAX_DEPTH, "
+"0","                nmin = SUBGROUP_MIN_SIZE, "
+"0","                iterations = 1000)"
+"0","  allRules <<- rbind(allRules, "
+"0","                     pso)"
+"0","  pso"
+"0","})"
+"2","S=40, K=3, p=0.07314, w0=0.7213, w1=0.7213, c.p=1.193, c.g=1.193
+"
+"2","v.max=NA, d=9.381, vectorize=TRUE, hybrid=off
+"
+"2","It 10: fitness=-1.419
+"
+"2","
+"

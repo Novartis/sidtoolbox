@@ -1,0 +1,3 @@
+"0","data <- fread(input = ""jiwen/siddata.txt"")"
+"0","data <- data[, c(""V1"", ""USUBJID"", ""AGEGR1"", ""SEX"", ""REGION1"", ""INISTG"") := NULL]"
+"0","head(data)"

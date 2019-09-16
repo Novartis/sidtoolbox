@@ -1,0 +1,363 @@
+---
+title: "sidtoolbox"
+output: html_document
+author: Marzie Rasekh
+---
+# Subgroup discovery demonstration
+
+```{r load_packaged, message=FALSE, warning=FALSE, include=FALSE}
+
+# or by indices
+library(devtools)
+library(roxygen2)
+
+#install(".")
+# or load it
+library(sidtoolbox)
+# update if changes made
+document()
+library(data.table)
+library(stringr)
+library(ggplot2)
+
+```
+
+# Simulated data
+
+
+```{r simulate_data}
+
+# simulate a sample dataset with 3 types of variables, numeric, binary, and count
+# covariates are X1, X2, ...
+# outcomes are Y_[type], namely Y_numeric, Y_binary, and Y_count
+# the contrast arm is TRT
+# 'N' samples will be created 
+# also places two subgroups, oneis true positive (random_TP) of size 'subgroup_ratio'*'N' where the treatment arm is enhanced by 'subgroup_enhanced_effect'
+# and false positive (random_FP) of same size but where both arms are shifted by 'subgroup_shift_effect'
+simulated.twoarm <- simulateSubgroupData(
+                            N = 2000,
+                            case = "prognostic", 
+                            arm = "two",
+                            overal_treatment_effect = 0.5, 
+                            subgroup_enhanced_effect = 1.5, 
+                            subgroup_ratio = 0.1,
+                            covariates_normal = list(c(0,1), c(0,1), c(0,1)),
+                            correlation = c(),
+                            covariates_binary = c(0.5, 0.5, 0.5, 0.5), 
+                            covariates_uniform = list(c(0,1), c(0,1), c(0,1)), 
+                            has_FP = TRUE,
+                            SD_NOISE_RATIO = 0.1)
+#names(simulated.twoarm)
+# summary(simulated.twoarm$data)
+simulated.twoarm
+
+```
+
+
+## Explore the data
+This step helps identify covariates to be included in the subgroup discovery.
+
+### Correlation matrix
+Correlations who one on one relation in your data. Highly correlated covariates should be removed.
+
+```{r exploreCorrelationMatrix}
+
+# examples
+exploreTriangleCorrelationMatrix(subgroup.data = simulated.twoarm, method = "spearman")
+exploreCorrelationMatrix(subgroup.data = simulated.twoarm)
+exploreDetailedChartCorrelation(subgroup.data = simulated.twoarm)
+
+
+```
+
+### Association rules
+Association rules help us find high level correlations in our data. 
+The rules are controled by support (how large the corresponding subgroup is) and confidence (how many of the total subgroup size follow the rule).
+
+```{r exploreAssociationRules, message=FALSE, warning=FALSE}
+
+# res <- exploreAssociationRules(subgroup.data)
+listAssociationRules(subgroup.data = simulated.twoarm, onlyCovariates = FALSE)
+plotAssociationRules(subgroup.data = simulated.twoarm, onlyCovariates = TRUE)
+plotAssociationRules(subgroup.data = simulated.twoarm, method = "graph", measure = "confidence", onlyCovariates = TRUE)
+plotAssociationRules(subgroup.data = simulated.twoarm, method = "scatterplot", measure = "support", onlyCovariates = TRUE)
+plotAssociationRules(subgroup.data = simulated.twoarm, method = "two-key plot", measure = "support", onlyCovariates = FALSE)
+#plotAssociationRulesInteractive(subgroup.data = simulated.twoarm, onlyCovariates = TRUE)
+
+
+```
+
+### Conditional inference tree
+Conditional inference trees are useful to fund the false positive subgroups, where both arms are shifted.
+
+
+```{r exploreDecisionTree, message=FALSE, warning=FALSE}
+# the true positive / false positive subgroup is
+# subgroup.data$rules
+a <- sapply(exploreConditionalInferenceTree(subgroup.data = simulated.twoarm, stump = FALSE, testtype = "Bonferroni", teststat = "max", significance = 0.05, nmin = 0.05, maxdepth = 2), FUN = plot)
+
+```
+
+
+
+### Clustering 
+
+
+```{r clustering}
+# coming soon
+
+```
+
+## Subgroup discovery
+
+```{r subgroup_discovery}
+# set the outcomes you want to run subgroup discovery on
+outcome_columns <- colnames(simulated.twoarm$data)[simulated.twoarm$outcomes]
+# save all rules in allRules
+allRules <- simulated.twoarm$rules
+allRules
+
+```
+
+### Treatment-specific Subgroup Discovery Tool (TSDT)
+<b>
+Battioui, C., Shen, L., Ruberg, S., (2014). <i>A Resampling-based Ensemble Tree Method to Identify
+Patient Subgroups with Enhanced Treatment Effect.</i> JSM proceedings, 2014 </b>
+
+```{r TSDT, message=FALSE, warning=FALSE}
+# the true positive / false positive subgroup is
+# simulated.twoarm$rules
+
+param <- list(
+  desirable_response = "increasing",
+  nsamples = 100, 
+  npermutations = 100, 
+  maxdepth = 2, 
+  min_subgroup_n_control = 0.05, 
+  min_subgroup_n_trt = 0.05, 
+  n_cpu = 1
+)
+
+resTSDT <- lapply(X = outcome_columns, FUN = function(y_idx) {
+  res <- runTSDT(subgroup.data = simulated.twoarm, 
+                     y_idx = y_idx,
+                     desirable_response = param$desirable_response,
+                     nsamples = param$nsamples, 
+                     npermutations = param$npermutations, 
+                     maxdepth = param$maxdepth, 
+                     min_subgroup_n_control = param$min_subgroup_n_control, 
+                     min_subgroup_n_trt = param$min_subgroup_n_trt, 
+                     n_cpu = param$n_cpu)
+  res
+  allRules <<- rbind(allRules, 
+                    parseTSDTResults(TSDT_table = res, outcome = y_idx, param = param))
+})
+
+resTSDT
+
+```
+
+### Virtual Twins
+
+Currently only supports binary outcomes and two arm studies.
+
+<b>Foster, Jared C., Jeremy MG Taylor, and Stephen J. Ruberg. <i>Subgroup identification from randomized clinical trial data.<i> Statistics in medicine 30.24 (2011): 2867-2880. 
+<a href="https://www.ncbi.nlm.nih.gov/pubmed/21815180">link</a></b>
+
+<a href="https://cran.r-project.org/web/packages/aVirtualTwins/index.html">Link to implemented package</a>
+
+
+```{R virtual_twins, message=FALSE, warning=FALSE}
+# the true positive / false positive subgroup is
+# simulated.twoarm$rules
+
+param <- list(
+  desirable_response = "increasing", 
+  forest.type = "double",
+  method = "absolute", 
+  tree.type = "class", 
+  folds = 10, 
+  ntree = 1000,
+  maxdepth = 2
+)
+idx <- sapply(X = outcome_columns, FUN = function(y){
+  x <- simulated.twoarm$data[, y, with = FALSE][[1]]
+  is.factor(x) && 
+    length(levels(x) == 2)
+})
+binary_outcomes <- outcome_columns[idx]
+resVT <- 
+  lapply(X = binary_outcomes,
+       FUN = function(y_idx) {
+  res <- runVirtualTwins(subgroup.data = simulated.twoarm, 
+                         y_idx = y_idx,
+                         desirable_response = param$desirable_response, 
+                         forest.type = param$forest.type,
+                         method = param$method, 
+                         tree.type = param$tree.type, 
+                         folds = param$folds, 
+                         ntree = param$ntree,
+                         maxdepth = param$maxdepth)
+  allRules <<- rbind(allRules,
+                    parseVTResults(VT_table = res, outcome = y_idx, param = param))
+  res
+})
+
+resVT
+
+```
+
+### Optimization approach with Particle Swarm Optimization (PSO)
+
+```{r PSO}
+# the true positive / false positive subgroup is
+# simulated.twoarm$rules
+
+resPSO <- lapply(X = outcome_columns,
+                 FUN = function(y_idx){
+  pso <- runPSO(subgroup.data = simulated.twoarm, 
+                y_idx = y_idx, 
+                fitness_method = "model", 
+                desirable_response = "increasing", 
+                depth = 2, 
+                nmin = 0.1, 
+                iterations = 100)
+  allRules <<- rbind(allRules, 
+                     pso)
+  pso
+})
+resPSO
+
+
+
+```
+
+
+## Analyze and compare rules
+
+```{r compare_rules}
+MIN_P_VALUE <- 10e-10
+P_THRESHOLD <- -log10(0.05)
+summarizeRules <- function(subgroup.data, rules) {
+  N.rules <- nrow(rules)
+  summaryRules <- data.table()
+  
+  allOutcomes <- outcome_columns
+  
+  for (i in c(1:N.rules)) {
+    row <- rules[i]
+    # adding a fix to remove dummy rules wihch were negative controls
+    if (!grepl(x = row$rule, pattern = "dummy")) {
+      if (str_length(row$outcome) == 0) {
+        Y <- allOutcomes
+      } else {
+        Y <- row$outcome
+      }
+      for (y in Y) {
+        row$outcome <- y
+        summaryRules <- rbind(summaryRules, row)
+      }
+    }
+    
+  }
+  N.rules <- nrow(summaryRules)
+  N <- nrow(simulated.twoarm$data)
+  effect_size <- sapply(
+    X = c(1:N.rules),
+    FUN = function(i) {
+      row <- summaryRules[i]
+      sbg_idx <-
+        parseRule(covariates = simulated.twoarm, rule = row$rule)
+      f <- interactionEffectSize(
+        subgroup.data = simulated.twoarm,
+        y_idx = row$outcome,
+        subgroup_idx = sbg_idx
+      )
+      c(
+        N_ratio = sum(sbg_idx) / N,
+        effect = f[1],
+        pvalue = f[2]
+      )
+    }
+  )
+  summaryRules$N_ratio <- effect_size[1, ]
+  summaryRules$interaction_coeff <- effect_size[2, ]
+  summaryRules$p_value <- effect_size[3, ]
+  summaryRules$p_value[summaryRules$p_value < MIN_P_VALUE] <- MIN_P_VALUE
+  # check TP rule and get accuracy precision recall
+  truth_subgroup <- which(rules$method == "sim_TP")
+  if (length(truth_subgroup) > 0) {
+    truth_subgroup <- parseRule(covariates = simulated.twoarm,
+                                rule = rules[truth_subgroup[1], ]$rule)
+    performance <- sapply(
+      X = c(1:N.rules),
+      FUN = function(i) {
+        row <- summaryRules[i, ]
+        sbg_idx <-
+          parseRule(covariates = simulated.twoarm, rule = row$rule)
+        TP <- sum(sbg_idx &  truth_subgroup)
+        FP <- sum(sbg_idx & !truth_subgroup)
+        TN <- sum(!sbg_idx & !truth_subgroup)
+        FN <- sum(!sbg_idx &  truth_subgroup)
+        precision <- TP / (TP + FP)
+        recall <- TP / (TP + FN)
+        F1  <- 2 * (recall * precision) / (precision + recall)
+        c(precision = precision,
+          recall = recall,
+          F1 = F1)
+      }
+    )
+    summaryRules$precision <- performance[1, ] * 100
+    summaryRules$recall <- performance[2, ] * 100
+    summaryRules$F1 <- performance[3, ] * 100
+  }
+  return(summaryRules)
+}
+
+data <- summarizeRules(subgroup.data = simulated.twoarm, rules = allRules)
+data$log_p_value <- -log10(data$p_value)
+  
+data <- data[data$outcome == "Y_binary",]
+ggplot(
+  data = data,
+  aes(
+    x = precision,
+    y = recall,
+    shape = outcome,
+    color = method
+  )
+) +
+geom_point() +
+ggtitle("Correctness of rules") +
+geom_label(
+  label = data$method,
+  nudge_x = 0.25,
+  nudge_y = 0.2,
+  size = 5
+)
+
+ggplot(
+  data = data,
+  aes(
+    x = interaction_coeff,
+    y = log_p_value,
+    shape = outcome,
+    color = method,
+     size = 10
+  )
+ 
+) +
+geom_point() +
+ggtitle("Volcano plot of rules") +
+geom_text(
+  label = data$method,
+  size = 3
+) + 
+geom_hline(yintercept = P_THRESHOLD)
+
+data
+
+```
+
+
+

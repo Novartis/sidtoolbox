@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "#' plot an interactive plot for association rules\n#'\n#' This function allows you to plot the rules found using aruleViz package\n#' prerequisite: exploreAssociationRule\n#' dependencies: aruleViz\n#' @param subgroup.data a list of data, covariates indices, outcome indices, trt index, and control value in trt\n#' @param support minimum support, supgroup size (double) default=0.1\n#' @param confidence minimum confidence required for rule (double) default=0.5\n#' @param nmin minimum length of rule (integer) default=2\n#' @param onlyCovariates whether to exclude outcomes (logical) default=FALSE\n#' @return plot\n#' @export\nplotAssociationRulesInteractive <- function(subgroup.data,\n                                            support = 0.1,\n                                            confidence = 0.5,\n                                            nmin = 2,\n                                            onlyCovariates = FALSE) {\n  library(arulesViz)\n  rules <- exploreAssociationRules(subgroup.data,\n                                   support = support,\n                                   confidence = confidence,\n                                   nmin = nmin,\n                                   onlyCovariates = onlyCovariates)\n  plot(rules,\n       measure=c(\"support\", \"confidence\"),\n       shading = \"lift\",\n       engine = \"interactive\")\n}\n",
+    "created" : 1565549296895.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "719151312",
+    "id" : "4E2CB46C",
+    "lastKnownWriteTime" : 1565549370,
+    "last_content_update" : 1565549370078,
+    "path" : "~/sidtoolbox/R/plotAssociationRulesInteractive.R",
+    "project_path" : "R/plotAssociationRulesInteractive.R",
+    "properties" : {
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

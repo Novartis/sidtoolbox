@@ -1,0 +1,136 @@
+"0","# increasing"
+"0","resPSO_increasing <- lapply(X = outcome_columns,"
+"0","                 FUN = function(y_idx){"
+"0","  pso <- runPSO(subgroup.data = subgroup.data, "
+"0","                y_idx = y_idx,  "
+"0","                desirable_response = ""increasing"", "
+"0","                depth = MAX_DEPTH, "
+"0","                nmin = SUBGROUP_MIN_SIZE, "
+"0","                iterations = 1000)"
+"0","  allRules <<- rbind(allRules, "
+"0","                     pso)"
+"0","  pso"
+"0","})"
+"2","S=40, K=3, p=0.07314, w0=0.7213, w1=0.7213, c.p=1.193, c.g=1.193
+"
+"2","v.max=NA, d=9.381, vectorize=TRUE, hybrid=off
+"
+"2","It 10: fitness=-1.845
+"
+"2","It 20: fitness=-2.441
+"
+"2","It 30: fitness=-2.47
+"
+"2","It 40: fitness=-2.482
+"
+"2","It 50: fitness=-2.489
+"
+"2","It 60: fitness=-2.489
+"
+"2","It 70: fitness=-2.489
+"
+"2","It 80: fitness=-2.489
+"
+"2","It 90: fitness=-2.489
+"
+"2","It 100: fitness=-2.489
+"
+"2","It 110: fitness=-2.489
+"
+"2","It 120: fitness=-2.489
+"
+"2","It 130: fitness=-2.489
+"
+"2","It 140: fitness=-2.489
+"
+"2","Maximal number of iterations without improvement reached
+"
+"2","S=40, K=3, p=0.07314, w0=0.7213, w1=0.7213, c.p=1.193, c.g=1.193
+"
+"2","v.max=NA, d=9.381, vectorize=TRUE, hybrid=off
+"
+"2","It 10: fitness=-1.956
+"
+"2","It 20: fitness=-2.159
+"
+"2","It 30: fitness=-2.17
+"
+"2","It 40: fitness=-2.589
+"
+"2","It 50: fitness=-2.789
+"
+"2","It 60: fitness=-2.789
+"
+"2","It 70: fitness=-2.884
+"
+"2","It 80: fitness=-2.955
+"
+"2","It 90: fitness=-2.955
+"
+"2","It 100: fitness=-2.955
+"
+"2","It 110: fitness=-2.955
+"
+"2","It 120: fitness=-2.971
+"
+"2","It 130: fitness=-2.98
+"
+"2","It 140: fitness=-2.98
+"
+"2","It 150: fitness=-2.98
+"
+"2","It 160: fitness=-2.98
+"
+"2","It 170: fitness=-2.98
+"
+"2","It 180: fitness=-2.98
+"
+"2","It 190: fitness=-2.98
+"
+"2","It 200: fitness=-2.98
+"
+"2","It 210: fitness=-2.98
+"
+"2","It 220: fitness=-2.98
+"
+"2","Maximal number of iterations without improvement reached
+"
+"2","S=40, K=3, p=0.07314, w0=0.7213, w1=0.7213, c.p=1.193, c.g=1.193
+"
+"2","v.max=NA, d=9.381, vectorize=TRUE, hybrid=off
+"
+"2","It 10: fitness=-1.695
+"
+"2","It 20: fitness=-1.932
+"
+"2","It 30: fitness=-1.932
+"
+"2","It 40: fitness=-1.958
+"
+"2","It 50: fitness=-1.958
+"
+"2","It 60: fitness=-1.958
+"
+"2","It 70: fitness=-1.958
+"
+"2","It 80: fitness=-1.958
+"
+"2","It 90: fitness=-1.958
+"
+"2","It 100: fitness=-1.958
+"
+"2","It 110: fitness=-1.958
+"
+"2","It 120: fitness=-1.958
+"
+"2","It 130: fitness=-1.958
+"
+"2","It 140: fitness=-1.958
+"
+"2","It 150: fitness=-1.958
+"
+"2","Maximal number of iterations without improvement reached
+"
+"0","resPSO_increasing"
+"1","[[1]]
+"

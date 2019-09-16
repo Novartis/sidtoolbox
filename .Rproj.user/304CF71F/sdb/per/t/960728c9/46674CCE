@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "output$inferenceTree <- renderUI({\n  req(values$sid.data$outcomes)\n  outcomes <- colnames(values$sid.data$data)[values$sid.data$outcomes]\n  inferenceTreeTabs <- \n    lapply(X = outcomes, FUN = function(y){\n      tabPanel(title = y,\n             plotOutput(outputId = paste(\"inferenceTree\", y, sep = \"_\")))\n    })\n  do.call(tabsetPanel, inferenceTreeTabs)\n})\n\nobserve(\n  lapply(X = values$sid.data$outcomes, function(y) {\n    output[[paste(\"inferenceTree\", y, sep = \"_\")]] <- DT::renderDataTable({\n      exploreConditionalInferenceTree(\n        subgroup.data = values$sid.data, \n        stump = input$stump, \n        testtype = input$testtype, \n        teststat = input$teststat, \n        significance = input$treeSignificance, \n        nmin = input$minLeafSize, \n        maxdepth = input$treemaxdepth)\n      plot(res[[3]], main = y)\n    })\n  })  \n)\n\noutput$associationTable <- renderDataTable({\n  res <- listAssociationRules(subgroup.data = values$sid.data, \n                       support = input$support, \n                       confidence = input$confidence, \n                       filterby = input$filterBy, \n                       top = input$topN,\n                       onlyCovariates = input$onlyCovariates)\n  return(as.data.table(res))\n})\noutput$associationGraph <- renderPlot({\n  plotAssociationRules(subgroup.data = values$sid.data, \n                       method = \"graph\", \n                       support = input$support, \n                       confidence = input$confidence, \n                       measure = input$filterBy,\n                       onlyCovariates = input$onlyCovariates)\n})\n#output$associationInteractive <- renderPlot({\n#  plotAssociationRulesInteractive(subgroup.data = values$sid.data, \n#                       support = input$support, \n#                       confidence = input$confidence)\n#})\noutput$associationScatter <- renderPlot({\n  plotAssociationRules(subgroup.data = values$sid.data, \n                       method = \"scatterplot\", \n                       support = input$support, \n                       confidence = input$confidence,\n                       measure = input$filterBy,\n                       onlyCovariates = input$onlyCovariates)\n})\noutput$associationDepth <- renderPlot({\n  plotAssociationRules(subgroup.data = values$sid.data, \n                       method = \"two-key plot\", \n                       support = input$support, \n                       confidence = input$confidence,\n                       measure = input$filterBy)\n})\n\n######### correlation\noutput$correlationMatrix <- renderPlot({\n  req(values$sid.data$data)\n  exploreCorrelationMatrix(subgroup.data = values$sid.data,\n                           method = input$correlationMethod)\n})\noutput$correlationTriangle <- renderPlot({\n  req(values$sid.data)\n  exploreTriangleCorrelationMatrix(subgroup.data = values$sid.data, \n                           method = input$correlationMethod)\n})\noutput$detailedChart <- renderPlot({\n  idx <- apply(X = values$sid.data, MARGIN = 1, FUN = function(row){\n    sum(is.na(row)) == 0\n  })\n  data <- values$sid.data[idx,]\n  exploreDetailedChartCorrelation(subgroup.data = values$sid.data)\n})\n",
+    "created" : 1565542775335.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1931276528",
+    "id" : "46674CCE",
+    "lastKnownWriteTime" : 1565548588,
+    "last_content_update" : 1565548588700,
+    "path" : "~/sidtoolbox/inst/shiny-examples/sidApp/src/server_explore.R",
+    "project_path" : "inst/shiny-examples/sidApp/src/server_explore.R",
+    "properties" : {
+    },
+    "relative_order" : 8,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

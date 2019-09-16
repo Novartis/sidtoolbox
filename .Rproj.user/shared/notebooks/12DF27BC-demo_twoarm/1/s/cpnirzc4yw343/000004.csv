@@ -1,0 +1,5 @@
+"0","# set the outcomes you want to run subgroup discovery on"
+"0","outcome_columns <- colnames(simulated.twoarm$data)[simulated.twoarm$outcomes]"
+"0","# save all rules in allRules"
+"0","allRules <- simulated.twoarm$rules"
+"0","allRules"

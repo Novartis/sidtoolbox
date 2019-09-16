@@ -1,0 +1,18 @@
+"0","# the true positive / false positive subgroup is"
+"0","# simulated.onearm$rules"
+"0","resPSO <- lapply(X = outcome_columns,"
+"0","                 FUN = function(y_idx){"
+"0","  pso <- runPSO(subgroup.data = simulated.onearm, "
+"0","                y_idx = y_idx, "
+"0","                fitness_method = NULL, "
+"0","                desirable_response = ""increasing"", "
+"0","                depth = 2, "
+"0","                nmin = 0.1, "
+"0","                iterations = 1000)"
+"0","  allRules <<- rbind(allRules, "
+"0","                     pso)"
+"0","  pso"
+"0","})"
+"2","Error in y_idx %in% subgroup.data$outcomes : 
+  object 'simulated.onearm' not found
+"

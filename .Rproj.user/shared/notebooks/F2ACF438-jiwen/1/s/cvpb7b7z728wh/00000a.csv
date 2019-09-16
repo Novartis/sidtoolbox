@@ -1,0 +1,6 @@
+"0","p"
+"1","NULL
+"
+"0","#plotAssociationRulesInteractive(subgroup.data = subgroup.data, onlyCovariates = TRUE)"
+"0","a <- capture.output(rules <- listAssociationRules(subgroup.data = subgroup.data, onlyCovariates = FALSE, support = min_support, confidence = min_confidence, min_order = min_order, max_order = max_order))"
+"0","as.data.table(rules)"

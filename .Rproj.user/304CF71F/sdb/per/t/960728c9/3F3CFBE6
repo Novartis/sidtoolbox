@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "#' explore the correlations between the features\n#'\n#' This function allows you to get the correlation between features\n#' with either pearson or spearson method\n#' using the rcorr function, which returns correlations and p-values\n#' prerequisite:\n#' dependencies: ctree from library party\n#' @param subgroup.dataset a list of data, covariates, outcomes and the trt, see loadDataset (list)\n#' @param method How to calculate the correlation c(\"pearson\", \"spearman\")\n#' @return a list or R and P values (list)\n#' @export\ncorrelationMatrix <- function(subgroup.data,\n                                 method = \"pearson\") {\n  require(Hmisc)\n  req(subgroup.data$data)\n  data <- subgroup.data$data %>%\n    select_if(is.numeric)\n  cormat <- rcorr(x = as.matrix(data), \n                  type = method)\n  return(cormat)\n}\n",
+    "created" : 1565545704175.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2978443855",
+    "id" : "3F3CFBE6",
+    "lastKnownWriteTime" : 1565546953,
+    "last_content_update" : 1565546953794,
+    "path" : "~/sidtoolbox/R/correlationMatrix.R",
+    "project_path" : "R/correlationMatrix.R",
+    "properties" : {
+    },
+    "relative_order" : 11,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,5 @@
+"0","# set the outcomes you want to run subgroup discovery on"
+"0","outcome_columns <- colnames(subgroup.data$data)[subgroup.data$outcomes]"
+"0","# save all rules in allRules"
+"0","allRules <- subgroup.data$rules"
+"0","allRules"

@@ -1,0 +1,5 @@
+"0","# on all coavriates"
+"0","a <- lapply(X = subgroup.data$outcomes, FUN = function(y) {"
+"0","  capture.output(p <- exploreConditionalInferenceTree(subgroup.data = subgroup.data, y_idx = y, stump = FALSE, testtype = ""Bonferroni"", significance = P_THRESHOLD, nmin = SUBGROUP_MIN_SIZE, maxdepth = MAX_DEPTH))"
+"0","  plot(main = paste(""all covariates - "", colnames(subgroup.data$data)[y]), p)"
+"0","})"

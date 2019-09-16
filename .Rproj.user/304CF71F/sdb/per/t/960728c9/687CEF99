@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "#' explore the conditional inference tree\n#'\n#' This function allows you to plot the conditional inference\n#' in your data as a tree\n#' for information on hyper parameters see 'ctree_control' from library party\n#' prerequisite:\n#' dependencies: ctree from library party\n#' @param subgroup.dataset a list of data, covariates, outcomes and the trt, see loadDataset (list)\n#' @param stump whether to draw a shallow tree with maximum 3 objects (logical) default=TRUE\n#' @param testtype \"a character specifying the type of the test statistic to be applied\" c(\"Bonferroni\", \"MonteCarlo\", \"Univariate\", \"Teststatistic\") default=\"Bonferroni\"\n#' @param teststat \"a character specifying how to compute the distribution of the test statistic.\" c(\"quad\", \"max\") default=\"quad\"\n#' @param nresample number of resampling for MonteCarlo method (integer) default=100\n#' @param significance threshold for p-value (numeric [0-1]) default=0.025\n#' @param nmin minimum number of samples in each leaf (subgroup size), if <1 considered as ratio (numeric) default=0.1\n#' @param maxdepth maximum depth (statements in rule) (integer) default=4\n#' @return plots a tree using ctree plot method\n#' @export\nexploreConditionalInferenceTree <- function(subgroup.data,\n                                            stump = TRUE,\n                                            y_idx,\n                                            teststat = \"quad\",\n                                            testtype = \"Bonferroni\",\n                                            nresample = 100,\n                                            significance = 0.025,\n                                            nmin = 0.1,\n                                            maxdepth = 4) {\n  library(party)\n  req(y_idx %in% subgroup.data$outcomes)\n  # allow nmin to be ratio or absolute\n  if (nmin < 1) {\n    minsplit <- nmin * nrow(subgroup.data$data)\n  } else {\n    minsplit <- nmin\n  }\n  outcomes <- colnames(subgroup.data$data)[subgroup.data$outcomes]\n  data <- subgroup.data$data[, c(subgroup.data$covariates, subgroup.data$trt), with = FALSE]\n  data$y = subgroup.data$data[, y_idx, with = FALSE]\n  decision_tree <- ctree(formula = y ~ .,\n                         data = data,\n                         controls = ctree_control(stump = stump,\n                                                  teststat = teststat,\n                                                  testtype = testtype,\n                                                  nresample = nresample,\n                                                  minsplit = minsplit,\n                                                  mincriterion = (1 - significance),\n                                                  maxdepth = maxdepth))\n  return(decision_tree)\n}\n",
+    "created" : 1565548592853.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1710490",
+    "id" : "687CEF99",
+    "lastKnownWriteTime" : 1565548819,
+    "last_content_update" : 1565548819327,
+    "path" : "~/sidtoolbox/R/exploreConditionalInferenceTree.R",
+    "project_path" : "R/exploreConditionalInferenceTree.R",
+    "properties" : {
+    },
+    "relative_order" : 9,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

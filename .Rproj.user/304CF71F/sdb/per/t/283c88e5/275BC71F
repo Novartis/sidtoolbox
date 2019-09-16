@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "# This script add the AVA library path\n# This is needed to run the app on the Shiny Server Pro\n#if(file.exists('/CHBS/apps/busdev_apps/AVA/RLib/AVA.R'))\n#  source('/CHBS/apps/busdev_apps/AVA/RLib/AVA.R', local = T)\n\n#library(ava)\n#library(sidtools)\nlibrary(shiny)\nlibrary(shinyWidgets)\nlibrary(shinyjs)\nlibrary(data.table)\nlibrary(dplyr)\nlibrary(stringr)\nlibrary(R.utils)\nlibrary(sidtoolbox)\nlibrary(arules)\nlibrary(arulesViz)\nlibrary(pso)\nlibrary(Hmisc)\nlibrary(MASS)\nlibrary(survival)\n\n\noptions(appName=\"sidApp\")\noptions(appDesc=\"Subgroup identification application\")\noptions(deployVersion=\"Beta\")\noptions(author=\"Marzie Rasekh\")\noptions(email=\"marzie.eslami_rasekh@novartis.com\")\n\nSIMULATE_CASE <- c(\"prognostic\", \"predictive\")\nMEASURE_FILTER_BY <- c(\"support\", \"confidence\", \"lift\")\nCORRELATION_METHOD <- c(\"spearman\", \"pearson\")\nCORRELATION_INFERENCE_TEST_TYPES <- c(\"Bonferroni\", \"MonteCarlo\", \"Univariate\", \"Teststatistic\")\nCORRELATION_INFERENCE_TEST_STATS <- c(\"quad\", \"max\")\nPSO_METHODS <- c(\"auto\", \"manual\", \"Parato (to be added)\")\n\nRULE_SUMMARY_FEATURES <- c(\"N_ratio\", \"interaction_coeff\", \"p_value\", \"precision\", \"recall\", \"F1\")\n\nvalues <- reactiveValues(\n  TSDT = list(), \n  TSDTparam = list(),\n  PSO = data.table(), \n  VT = list(),\n  Vparam = list(),\n  sid.data = list()\n)\n",
+    "created" : 1565723019640.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4187081890",
+    "id" : "275BC71F",
+    "lastKnownWriteTime" : 1565608739,
+    "last_content_update" : 1565608739,
+    "path" : "~/sidtoolbox/inst/shiny-examples/sidApp/global.R",
+    "project_path" : "inst/shiny-examples/sidApp/global.R",
+    "properties" : {
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,2 @@
+"0","rules.data <- rules.data[, c(""rule"", ""outcome"", ""N_ratio"", ""effect_size"", ""pvalue"", ""precision"", ""recall"", ""F1"")]"
+"0","as.data.table(rules.data)"

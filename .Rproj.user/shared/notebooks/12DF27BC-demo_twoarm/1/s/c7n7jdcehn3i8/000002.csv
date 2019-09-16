@@ -1,0 +1,62 @@
+"0","# the true positive / false positive subgroup is"
+"0","# simulated.twoarm$rules"
+"0","param <- list("
+"0","  desirable_response = ""increasing"", "
+"0","  forest.type = ""double"","
+"0","  method = ""absolute"", "
+"0","  tree.type = ""class"", "
+"0","  folds = 10, "
+"0","  ntree = 1000,"
+"0","  maxdepth = 2"
+"0",")"
+"0","idx <- sapply(X = outcome_columns, FUN = function(y){"
+"0","  x <- simulated.twoarm$data[, y, with = FALSE][[1]]"
+"0","  is.factor(x) && "
+"0","    length(levels(x) == 2)"
+"0","})"
+"0","binary_outcomes <- outcome_columns[idx]"
+"0","resVT <- "
+"0","  lapply(X = binary_outcomes,"
+"0","       FUN = function(y_idx) {"
+"0","  res <- runVirtualTwins(subgroup.data = simulated.twoarm, "
+"0","                         y_idx = y_idx,"
+"0","                         desirable_response = param$desirable_response, "
+"0","                         forest.type = param$forest.type,"
+"0","                         method = param$method, "
+"0","                         tree.type = param$tree.type, "
+"0","                         folds = param$folds, "
+"0","                         ntree = param$ntree,"
+"0","                         maxdepth = param$maxdepth)"
+"0","  allRules <<- rbind(allRules,"
+"0","                    parseVTResults(VT_table = res, outcome = y_idx, param = param))"
+"0","  res"
+"0","})"
+"1","""1"" will be the favorable outcome 
+"
+"1","X4 is two-level factor. It has to be transformed into numeric value : 
+"
+"1","0 becomes 0 
+"
+"1","1 becomes 1 
+"
+"1","X5 is two-level factor. It has to be transformed into numeric value : 
+"
+"1","0 becomes 0 
+"
+"1","1 becomes 1 
+"
+"1","X6 is two-level factor. It has to be transformed into numeric value : 
+"
+"1","0 becomes 0 
+"
+"1","1 becomes 1 
+"
+"1","X7 is two-level factor. It has to be transformed into numeric value : 
+"
+"1","0 becomes 0 
+"
+"1","1 becomes 1 
+"
+"0","resVT"
+"1","[[1]]
+"

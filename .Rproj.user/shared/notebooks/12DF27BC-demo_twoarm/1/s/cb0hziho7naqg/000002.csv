@@ -1,0 +1,98 @@
+"0","# the true positive / false positive subgroup is"
+"0","# simulated.twoarm$rules"
+"0","resPSO <- lapply(X = outcome_columns,"
+"0","                 FUN = function(y_idx){"
+"0","  pso <- runPSO(subgroup.data = simulated.twoarm, "
+"0","                y_idx = y_idx, "
+"0","                fitness_method = ""model"", "
+"0","                desirable_response = ""increasing"", "
+"0","                depth = 2, "
+"0","                nmin = 0.1, "
+"0","                iterations = 100)"
+"0","  allRules <<- rbind(allRules, "
+"0","                     pso)"
+"0","  pso"
+"0","})"
+"2","S=40, K=3, p=0.07314, w0=0.7213, w1=0.7213, c.p=1.193, c.g=1.193
+"
+"2","v.max=NA, d=5.628, vectorize=TRUE, hybrid=off
+"
+"2","Loading required package: MASS
+"
+"2","It 10: fitness=-1.491
+"
+"2","It 20: fitness=-1.491
+"
+"2","It 30: fitness=-1.491
+"
+"2","It 40: fitness=-1.491
+"
+"2","It 50: fitness=-2.2
+"
+"2","It 60: fitness=-2.461
+"
+"2","It 70: fitness=-2.521
+"
+"2","It 80: fitness=-2.525
+"
+"2","It 90: fitness=-2.527
+"
+"2","It 100: fitness=-2.527
+"
+"2","Maximal number of iterations reached
+"
+"2","S=40, K=3, p=0.07314, w0=0.7213, w1=0.7213, c.p=1.193, c.g=1.193
+"
+"2","v.max=NA, d=5.628, vectorize=TRUE, hybrid=off
+"
+"2","It 10: fitness=-0.4403
+"
+"2","It 20: fitness=-1.64
+"
+"2","It 30: fitness=-1.789
+"
+"2","It 40: fitness=-1.835
+"
+"2","It 50: fitness=-2.317
+"
+"2","It 60: fitness=-2.333
+"
+"2","It 70: fitness=-2.333
+"
+"2","It 80: fitness=-2.333
+"
+"2","It 90: fitness=-2.333
+"
+"2","It 100: fitness=-2.333
+"
+"2","Maximal number of iterations reached
+"
+"2","S=40, K=3, p=0.07314, w0=0.7213, w1=0.7213, c.p=1.193, c.g=1.193
+"
+"2","v.max=NA, d=5.628, vectorize=TRUE, hybrid=off
+"
+"2","It 10: fitness=-1.122
+"
+"2","It 20: fitness=-1.64
+"
+"2","It 30: fitness=-2.046
+"
+"2","It 40: fitness=-2.086
+"
+"2","It 50: fitness=-2.088
+"
+"2","It 60: fitness=-2.088
+"
+"2","It 70: fitness=-2.088
+"
+"2","It 80: fitness=-2.088
+"
+"2","It 90: fitness=-2.088
+"
+"2","It 100: fitness=-2.088
+"
+"2","Maximal number of iterations reached
+"
+"0","resPSO"
+"1","[[1]]
+"

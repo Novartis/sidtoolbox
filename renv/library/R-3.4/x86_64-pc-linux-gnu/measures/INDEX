@@ -1,0 +1,57 @@
+ACC                     Accuracy
+ARSQ                    Adjusted coefficient of determination
+AUC                     Area under the curve
+BAC                     Balanced accuracy
+BER                     Balanced error rate
+Brier                   Brier score
+BrierScaled             Brier scaled
+EXPVAR                  Explained variance
+F1                      F1 measure
+FDR                     False discovery rate
+FN                      False negatives
+FNR                     False negative rate
+FP                      False positives
+FPR                     False positive rate
+GMEAN                   G-mean
+GPR                     Geometric mean of precision and recall.
+KAPPA                   Cohen's kappa
+KendallTau              Kendall's tau
+LSR                     Logarithmic Scoring Rule
+Logloss                 Logarithmic loss
+MAE                     Mean of absolute errors
+MAPE                    Mean absolute percentage error
+MCC                     Matthews correlation coefficient
+MEDAE                   Median of absolute errors
+MEDSE                   Median of squared errors
+MMCE                    Mean misclassification error
+MSE                     Mean of squared errors
+MSLE                    Mean squared logarithmic error
+MultilabelACC           Accuracy (multilabel)
+MultilabelF1            F1 measure (multilabel)
+MultilabelHamloss       Hamming loss
+MultilabelPPV           Positive predictive value (multilabel)
+MultilabelSubset01      Subset-0-1 loss
+MultilabelTPR           TPR (multilabel)
+NPV                     Negative predictive value
+PPV                     Positive predictive value
+QSR                     Quadratic Scoring Rule
+RAE                     Relative absolute error
+RMSE                    Root mean squared error
+RMSLE                   Root mean squared logarithmic error
+RRSE                    Root relative squared error
+RSQ                     Coefficient of determination
+SAE                     Sum of absolute errors
+SSE                     Sum of squared errors
+SSR                     Spherical Scoring Rule
+SpearmanRho             Spearman's rho
+TN                      True negatives
+TNR                     True negative rate
+TP                      True positives
+TPR                     True positive rate
+WKAPPA                  Mean quadratic weighted kappa
+listAllMeasures         List all measures
+multiclass.AU1P         Weighted average 1 vs. 1 multiclass AUC
+multiclass.AU1U         Average 1 vs. 1 multiclass AUC
+multiclass.AUNP         Weighted average 1 vs. rest multiclass AUC
+multiclass.AUNU         Average 1 vs. rest multiclass AUC
+multiclass.Brier        Multiclass Brier score
